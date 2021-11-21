@@ -9,6 +9,7 @@ class DataGenerator(tkk.Tk):
         self.num_vals = num_vals
         self.range_start = range_start
         self.range_end = range_end
+        self.historical_data = self.data_in_range()
         self.initUI()
 
     def __gen_points(self):
@@ -68,12 +69,16 @@ class DataGenerator(tkk.Tk):
             line_spacing=8#Don't ask why
             self.my_canvas=tkk.Canvas(width=400,height=300,bg="white")
             self.my_canvas.grid(column=1,row=3,pady=75)
-            for x in range(0,6):
-                randn=random.randint(0,300)
+            index = self.Data_range.get()
+            height = 300
+            range = self.historical_data[index:index + 5]
+            #rescale the range to fit within the box nicely
+            range = range * (0.8 * height) / max(range)
+            for x, y in enumerate(range):
                 x1=x_coord
                 x2=x_coord+rect_thickness
-                y1=300#Canvas height
-                y2=y1-randn
+                y1=height
+                y2=y1-y
                 self.my_canvas.create_rectangle(x1,y1,x2,y2,fill="lightgreen")
                 if(x!=0):
                     self.my_canvas.create_line(old_x_coord+line_spacing,old_y2,x2-((rect_spacing+rect_thickness)/2),y2,fill="red",width=2)
