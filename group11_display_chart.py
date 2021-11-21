@@ -101,5 +101,3 @@ if __name__ == "__main__":
     valuesList = []
     gen = DataGenerator(20, 0, 100)
     gen.mainloop()
-    valuesList = gen.data_in_range()
-    #print(valuesList)  
