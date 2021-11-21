@@ -57,8 +57,9 @@ class DataGenerator(tkk.Tk):
             self.data_range_label.destroy()
             self.data_range_label=tkk.Label(self,text=f"Data range: {self.Data_range.get()}-{self.Data_range.get()+5}",font=("Ariel",15),width=30,bg="white")
             self.data_range_label.grid(column=0,row=1)
-            DrawRects()
-        def DrawRects():
+            DrawRects(self.Data_range.get())
+        def DrawRects(data_range):
+            data_range=self.Data_range.get()#no use right now
             x_coord=0
             old_x_coord=0
             old_y2=0
