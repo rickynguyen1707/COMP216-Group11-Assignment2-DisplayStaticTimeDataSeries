@@ -1,5 +1,4 @@
 import random
-import matplotlib.pyplot as plt
 import numpy as np
 import tkinter as tkk
 
@@ -31,13 +30,6 @@ class DataGenerator(tkk.Tk):
     def data_in_range(self):
         return (self.range_end - self.range_start) * self.__gen_points() + self.range_start
 
-    def plot(self, points):
-        plt.plot(points, color='g')
-        plt.xlabel("Days driven")
-        plt.ylabel("Gasoline (Liters)")
-        plt.title("Fuel Indicator")
-        plt.show()
-
     def initUI(self):
         # Window properties
         self.geometry("600x500")
@@ -56,6 +48,7 @@ class DataGenerator(tkk.Tk):
 
         # Commands
         def go():
+            print(self.historical_data)
             self.my_canvas.delete()
             self.data_range_label.destroy()
             self.data_range_label = tkk.Label(self,
